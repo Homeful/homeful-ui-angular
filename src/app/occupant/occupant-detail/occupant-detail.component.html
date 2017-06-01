@@ -1,16 +1,14 @@
+{{locations}}
 <div class="row">
-  <form class="col s12">
+  <form class="col s12" #occupant="ngForm">
     <div class="row">
       <div class="input-field col s12">
-        <input placeholder="Placeholder" id="name" type="text" class="validate">
+        <input [(ngModel)]="occupant.name" id="name" name="name" type="text" class="validate" required>
         <label for="name">Name</label>
       </div>
       <div class="input-field col s12">
-        <select>
-          <option value="" disabled selected>Choose Camp</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+        <select id="location" [(ngModel)]="occupant.locationId" name="locationId">
+          <option> *ngFor="let location of locations" [value]="location.id">{{ location.name }}</option>
         </select>
         <label>Camp</label>
       </div>
@@ -18,7 +16,7 @@
     <div class="row">
       <label>Birthdate</label> 
       <div class="input-field col s12">
-        <input type="date" class="datepicker">
+        <input type="date" class="datepicker" id="birthdate" name="birthdate" [(ngModel)]="occupant.birthdate" />
       </div>
     </div>
     <div class="row">
@@ -40,7 +38,7 @@
       <div class="switch">
         <label>
           No
-          <input type="checkbox">
+          <input type="checkbox" id="active" name="active" [(ngModel)]="occupant.active" />
           <span class="lever"></span>
           Yes
         </label>
@@ -51,11 +49,12 @@
       <div class="col s12">
         <div class="row">
         <div class="input-field col s12">
-          <textarea id="notes" class="materialize-textarea"></textarea>
+          <textarea id="notes" name="notes" class="materialize-textarea" [(ngModel)]="occupant.notes"></textarea>
           <label for="notes">Notes</label>
         </div>
         </div>
       </div>
     </div>
+    <button type="submit">Create</button>
   </form>
 </div>

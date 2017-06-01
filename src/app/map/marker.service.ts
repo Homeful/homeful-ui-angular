@@ -1,8 +1,16 @@
 import { Injectable } from '@angular/core';
+
 import { LoggerService } from '../logger.service';
 import { LocationService } from '../location/location.service';
-import { PopupService } from '../popup/popup.service';
-import { PopupComponent } from '../popup/popup.component';
+
+import { Location } from '../location/model';
+
+import {Subscription} from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
 
 declare var google: any;
 
@@ -10,11 +18,11 @@ declare var google: any;
 export class MarkerService {
   private markers: any;
   private selectedMarker: any;
-  constructor(
-    private loggerService: LoggerService, 
-    private locationService: LocationService,
-    private popupService: PopupService) { 
-      
+  private locations: Location[];
+
+  constructor(private loggerService: LoggerService, 
+              private locationService: LocationService) {
+                console.log('marker service created');
   }
   
   markerMoved(marker, location): boolean {
@@ -49,14 +57,12 @@ export class MarkerService {
               '</div>' +
       '</div>' + '<a class="waves-effect waves-light btn left" onclick="updateSelectedLocation()">Save</a>' +
       '<a class="waves-effect waves-light btn right" onclick="removeLocation()">Delete</a>'
-
     });
     
     marker.addListener('click', function () {
       parent.selectedMarker = marker;
       parent.locationService.setSelectedLocation(location);
-      //infowindow.open(map, marker);
-      parent.popupService.open(location);
+      (<any>$('#popup')).modal('open');
     });
   }
   addMarkerMouseup(location, marker) {
@@ -82,19 +88,23 @@ export class MarkerService {
   }
 
   loadMarkersOnMap(map) {
-    if (!this.markers) {
+    if (!this.locations) {
+      this.locationService.getLocationsObservable()
+        .subscribe(locations => {
+          this.locations = locations;
+        }, (errorMsg: string) => {
+          this.loggerService.log(`Error occurred while fetching locations.`);
+          this.loggerService.log(`${errorMsg}`);
+        }, () => this.createMarkers(map));
+    } else {
       this.createMarkers(map);
     }
   }
 
   createMarkers(map) {
-    this.locationService.getLocations()
-        .subscribe(locations => {
-          this.markers = locations.map((location) => { this.createMarker(location, map); });
-        }, (errorMsg: string) => {
-          this.loggerService.log(`Error occurred while fetching locations.`);
-          this.loggerService.log(`${errorMsg}`);
-        });
+    console.log('creating markers');
+    this.markers = this.locations.map((location) => { this.createMarker(location, map); });
+    
   }
 
   getMarkers() {
@@ -106,6 +116,7 @@ export class MarkerService {
   }
 
   createMarker(location, map) {
+    // make marker draggable in dev, not in prod
     var marker = new google.maps.Marker({
       map: map,
       position: { lat: location.latitude, lng: location.longitude },

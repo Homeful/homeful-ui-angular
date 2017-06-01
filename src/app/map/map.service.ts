@@ -15,7 +15,8 @@ export class MapService {
   private map: any;
   private defaultPosition: any;
 
-  constructor(private loggerService: LoggerService, private markerService: MarkerService) { }
+  constructor(private loggerService: LoggerService, 
+              private markerService: MarkerService) { }
 
   setMap(map) {
     this.map = map;
@@ -41,9 +42,9 @@ export class MapService {
 
   loadMap() {   
     (<any>window).googleMapsReady=this.onMapsReady.bind(this);
-    var script = document.createElement("script");
+    let script = document.createElement("script");
     script.type = "text/javascript";
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyAi9MNNSJZW0Qg3UEYe-7mfquoBiaTALMw&callback=googleMapsReady";
+    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8eMybD8y6vguTF7e64TEyO2F6TUNuSN0&callback=googleMapsReady";
     document.getElementsByTagName("head")[0].appendChild(script);
     this.loggerService.log("map loaded.");
   }

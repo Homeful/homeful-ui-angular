@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, AfterContentInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, AfterContentInit, OnDestroy } from '@angular/core';
 import { LoggerService } from '../logger.service';
 import { MapService } from './map.service';
 import { MarkerService } from './marker.service';
@@ -8,7 +8,7 @@ import { MarkerService } from './marker.service';
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit, AfterViewInit, AfterContentInit {
+export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
   private markers: any;
   isBusy = false;
   
@@ -31,5 +31,9 @@ export class MapComponent implements OnInit, AfterViewInit, AfterContentInit {
 
   createLocation(): void {
     this.markerService.createNewMarker(this.mapService.getMap(), this.mapService.getDefaultPosition());
+  }
+
+  ngOnDestroy() {
+    (<any>window).google = {}
   }
 }
