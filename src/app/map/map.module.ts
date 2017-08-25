@@ -10,27 +10,18 @@ import { MapService } from './map.service';
 import { LoggerService } from '../logger.service';
 import { MarkerService } from './marker.service';
 
-const MapRoutes: Routes = [
-    { path: 'map', component: MapComponent },
-    { path: '', component: MapComponent }
-];
-
 @NgModule({
-  declarations: [
-    MapComponent,
-  ],
-  imports: [
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(MapRoutes),
-  ],
-  exports: [
-      RouterModule
-  ],
-  providers: [
-    MapService,
-    MarkerService,
-    LoggerService,
-  ]
+    declarations: [
+        MapComponent,
+    ],
+    imports: [
+        FormsModule,
+        HttpModule,
+    ],
+    providers: [
+        MapService,
+        MarkerService,
+        LoggerService,
+    ]
 })
 export class MapModule { }

@@ -1,40 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+
+import { OccupantModule } from '../occupant/occupant.module';
+import { NeedModule } from '../need/need.module';
+import { LocationRoutingModule } from './location.routing';
 
 import { LocationComponent } from './location.component';
 
-import { LoggerService } from '../logger.service';
 import { LocationService } from './location.service';
-import { OccupantService } from '../occupant/occupant.service';
-import { NeedService } from '../need/need.service';
-
-const LocationRoutes: Routes = [
-    {
-        path: 'location/:id', component: LocationComponent,
-        //children: [ { path: ':id', component: LocationComponent } ]
-    }
-];
 
 @NgModule({
-  declarations: [
-    LocationComponent,
-  ],
-  imports: [
-    FormsModule,
-    HttpModule,
-    RouterModule.forChild(LocationRoutes)
-  ],
-  exports: [
-      RouterModule
-  ],
-  providers: [
-    LoggerService,
-    LocationService,
-    OccupantService,
-    NeedService
-  ]
+	declarations: [
+		LocationComponent,
+	],
+	imports: [
+		CommonModule,
+		OccupantModule,
+		NeedModule,
+		LocationRoutingModule
+	],
+	providers: [
+		LocationService
+	]
 })
 export class LocationModule { }

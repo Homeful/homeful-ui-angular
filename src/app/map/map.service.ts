@@ -12,40 +12,40 @@ declare var google: any;
 
 @Injectable()
 export class MapService {
-  private map: any;
-  private defaultPosition: any;
+    private map: any;
+    private defaultPosition: any;
 
-  constructor(private loggerService: LoggerService, 
-              private markerService: MarkerService) { }
+    constructor(private loggerService: LoggerService, 
+                            private markerService: MarkerService) { }
 
-  setMap(map) {
-    this.map = map;
-  }
+    setMap(map) {
+        this.map = map;
+    }
 
-  getMap() {
-    return this.map;
-  }
+    getMap() {
+        return this.map;
+    }
 
-  getDefaultPosition() {
-    return this.defaultPosition;
-  }
+    getDefaultPosition() {
+        return this.defaultPosition;
+    }
 
-  onMapsReady() {
-    this.defaultPosition = new google.maps.LatLng(36.1627, -86.7816);
-    var mapOptions = {
-      zoom: 12,
-      center: this.defaultPosition
-    };
-    this.setMap(new google.maps.Map(document.getElementById('map'), mapOptions));
-    this.markerService.loadMarkersOnMap(this.map);
-  }
+    onMapsReady() {
+        this.defaultPosition = new google.maps.LatLng(36.1627, -86.7816);
+        var mapOptions = {
+            zoom: 12,
+            center: this.defaultPosition
+        };
+        this.setMap(new google.maps.Map(document.getElementById('map'), mapOptions));
+        this.markerService.loadMarkersOnMap(this.map);
+    }
 
-  loadMap() {   
-    (<any>window).googleMapsReady=this.onMapsReady.bind(this);
-    let script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8eMybD8y6vguTF7e64TEyO2F6TUNuSN0&callback=googleMapsReady";
-    document.getElementsByTagName("head")[0].appendChild(script);
-    this.loggerService.log("map loaded.");
-  }
+    loadMap() {     
+        (<any>window).googleMapsReady=this.onMapsReady.bind(this);
+        let script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://maps.googleapis.com/maps/api/js?key=AIzaSyC8eMybD8y6vguTF7e64TEyO2F6TUNuSN0&callback=googleMapsReady";
+        document.getElementsByTagName("head")[0].appendChild(script);
+        this.loggerService.log("map loaded.");
+    }
 }

@@ -1,12 +1,12 @@
 #mapButton {
-    float: right;
-    position: fixed;
-    right: 10px;
-    top: 70px;
-    /* display: inline-block; */
-    z-index: 999;
+        float: right;
+        position: fixed;
+        right: 10px;
+        top: 70px;
+        /* display: inline-block; */
+        z-index: 999;
 }
 #map {
-    display: block;
-    height: 89%;
+        display: block;
+        height: 89%;
 }

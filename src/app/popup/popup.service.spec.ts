@@ -3,13 +3,13 @@ import { TestBed, inject } from '@angular/core/testing';
 import { PopupService } from './popup.service';
 
 describe('PopupService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [PopupService]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [PopupService]
+        });
     });
-  });
 
-  it('should ...', inject([PopupService], (service: PopupService) => {
-    expect(service).toBeTruthy();
-  }));
+    it('should ...', inject([PopupService], (service: PopupService) => {
+        expect(service).toBeTruthy();
+    }));
 });

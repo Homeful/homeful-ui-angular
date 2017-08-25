@@ -4,36 +4,36 @@ import { MapService } from './map.service';
 import { MarkerService } from './marker.service';
 
 @Component({
-  selector: 'map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+    selector: 'map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, AfterViewInit, AfterContentInit, OnDestroy {
-  private markers: any;
-  isBusy = false;
-  
-  constructor(
-    private mapService: MapService, 
-    private loggerService: LoggerService, 
-    private markerService: MarkerService) {  }
-
-  ngOnInit(): void {
-    this.loggerService.log("map initialized.");
-  }
-
-  ngAfterContentInit(): void {
+    private markers: any;
+    isBusy = false;
     
-  }
+    constructor(
+        private mapService: MapService, 
+        private loggerService: LoggerService, 
+        private markerService: MarkerService) {    }
 
-  ngAfterViewInit(): void {
-    this.mapService.loadMap();
-  }
+    ngOnInit(): void {
+        this.loggerService.log("map initialized.");
+    }
 
-  createLocation(): void {
-    this.markerService.createNewMarker(this.mapService.getMap(), this.mapService.getDefaultPosition());
-  }
+    ngAfterContentInit(): void {
+        
+    }
 
-  ngOnDestroy() {
-    (<any>window).google = {}
-  }
+    ngAfterViewInit(): void {
+        this.mapService.loadMap();
+    }
+
+    createLocation(): void {
+        this.markerService.createNewMarker(this.mapService.getMap(), this.mapService.getDefaultPosition());
+    }
+
+    ngOnDestroy() {
+        (<any>window).google = {}
+    }
 }

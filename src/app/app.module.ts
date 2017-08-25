@@ -15,24 +15,24 @@ import { LoggerService } from './logger.service';
 import { ErrorComponent } from './error/error.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    ErrorComponent,
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    OccupantModule,
-    LocationModule,
-    MapModule,
-    AppRoutingModule
-  ],
-  providers: [
-    LoggerService,
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        ErrorComponent,
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        OccupantModule,
+        LocationModule,
+        MapModule,
+        AppRoutingModule
+    ],
+    providers: [
+        LoggerService,
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

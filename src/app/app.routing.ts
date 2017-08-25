@@ -1,18 +1,25 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { ErrorComponent } from './error/error.component';
+import { MapComponent } from './map/map.component';
+import { LocationComponent } from './location/location.component';
+import { OccupantComponent } from './occupant/occupant.component';
+
+const appRoutes: Routes = [
+    { path: '', component: MapComponent },
+    { path: 'map', component: MapComponent },
+    { path: 'location/:id', component: LocationComponent },
+    { path: 'occupants', component: OccupantComponent },
+    { path: '**', redirectTo: 'map' }
+];
 
 @NgModule({
-    imports: [
-        RouterModule.forRoot([
-            { path: '**' , component: ErrorComponent },
-        ])    
-    ],
-    exports: [
-        RouterModule
-    ]
+	imports: [
+		RouterModule.forRoot(appRoutes)
+	],
+	exports: [
+		RouterModule
+	]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
 

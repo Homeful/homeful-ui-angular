@@ -1,14 +1,14 @@
 import { HomefulUiPage } from './app.po';
 
 describe('homeful-ui App', function() {
-  let page: HomefulUiPage;
+    let page: HomefulUiPage;
 
-  beforeEach(() => {
-    page = new HomefulUiPage();
-  });
+    beforeEach(() => {
+        page = new HomefulUiPage();
+    });
 
-  it('should display message saying app works', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('app works!');
-  });
+    it('should display message saying app works', () => {
+        page.navigateTo();
+        expect(page.getParagraphText()).toEqual('app works!');
+    });
 });

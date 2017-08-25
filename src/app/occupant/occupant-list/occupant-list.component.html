@@ -1,15 +1,15 @@
-<a class="waves-effect waves-light btn" routerLink="add">Add Camper</a>
+<a class="waves-effect waves-light btn" [routerLink]="['add']">Add Camper</a>
+<table class="table-responsive striped" *ngIf="occupants && occupants.length > 0">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
 
-<table class="table-responsive striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <!--<tr *ngFor="let occupant of occupants">
-      <td>{{ occupant.name }}</td>
-    </tr>-->
-  </tbody>
+    <tbody>
+        <tr *ngFor="let occupant of occupants">
+			<td>{{ occupant.name }}</td>
+			<a class="btn btn-primary pull-right" [routerLink]="['edit', occupant.id]">Edit</a>
+        </tr>
+    </tbody>
 </table>

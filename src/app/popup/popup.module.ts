@@ -13,22 +13,22 @@ import { PopupService } from '../popup/popup.service';
 
 
 @NgModule({
-  declarations: [
-    PopupComponent
-  ],
-  imports: [
-    FormsModule,
-    HttpModule,
-    OccupantModule,
-    LocationModule,
-    RouterModule,
-  ],
-  exports: [
-      RouterModule
-  ],
-  providers: [
-    LoggerService,
-    PopupService
-  ]
+    declarations: [
+        PopupComponent
+    ],
+    imports: [
+        FormsModule,
+        HttpModule,
+        OccupantModule,
+        LocationModule,
+        RouterModule,
+    ],
+    exports: [
+            RouterModule
+    ],
+    providers: [
+        LoggerService,
+        PopupService
+    ]
 })
 export class PopupModule { }
